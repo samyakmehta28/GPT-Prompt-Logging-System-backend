@@ -11,7 +11,9 @@ interface ResponseAPI {
     User: string;
     Environment: string;
 }
-export declare function createResponseAPI(createProxyApiDto: CreateProxyApiDto): ResponseAPI;
-export declare function updateSuccessfulResponseAPI(responseAPI: ResponseAPI, response: string): ResponseAPI;
-export declare function updateFailedResponseAPI(responseAPI: ResponseAPI): ResponseAPI;
+export declare class ResponseApiService {
+    createResponseAPI(createProxyApiDto: CreateProxyApiDto): ResponseAPI;
+    updateSuccessfulResponseAPI(responseAPI: ResponseAPI, response: string): ResponseAPI;
+    updateFailedResponseAPI(responseAPI: ResponseAPI): ResponseAPI;
+}
 export {};

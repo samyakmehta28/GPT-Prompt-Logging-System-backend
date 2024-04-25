@@ -13,25 +13,26 @@ exports.ProxyApiService = void 0;
 const common_1 = require("@nestjs/common");
 const openaiService_1 = require("./openaiService");
 const clickhouse_service_1 = require("./clickhouse.service");
-const responseApiUtils_1 = require("./responseApiUtils");
+const responseAPIUtils_service_1 = require("./responseAPIUtils.service");
 let ProxyApiService = class ProxyApiService {
-    constructor(openAIService, clickHouseService) {
+    constructor(openAIService, clickHouseService, responseApiService) {
         this.openAIService = openAIService;
         this.clickHouseService = clickHouseService;
+        this.responseApiService = responseApiService;
     }
     ;
     async create(createProxyApiDto, queryParamsDto) {
-        let responseAPI = (0, responseApiUtils_1.createResponseAPI)(createProxyApiDto);
+        let responseAPI = this.responseApiService.createResponseAPI(createProxyApiDto);
         let response = '';
         try {
             response = await this.openAIService.chatCompletion(createProxyApiDto);
-            responseAPI = (0, responseApiUtils_1.updateSuccessfulResponseAPI)(responseAPI, response);
+            responseAPI = this.responseApiService.updateSuccessfulResponseAPI(responseAPI, response);
             await this.clickHouseService.storeDataInDataset(responseAPI);
             return { data: response };
         }
         catch (error) {
             console.error('Error making API call:', error);
-            responseAPI = (0, responseApiUtils_1.updateFailedResponseAPI)(responseAPI);
+            responseAPI = this.responseApiService.updateFailedResponseAPI(responseAPI);
             await this.clickHouseService.storeDataInDataset(responseAPI);
             return { data: response };
         }
@@ -54,6 +55,7 @@ exports.ProxyApiService = ProxyApiService;
 exports.ProxyApiService = ProxyApiService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [openaiService_1.OpenAIService,
-        clickhouse_service_1.ClickHouseService])
+        clickhouse_service_1.ClickHouseService,
+        responseAPIUtils_service_1.ResponseApiService])
 ], ProxyApiService);
 //# sourceMappingURL=proxy-api.service.js.map
