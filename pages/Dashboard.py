@@ -4,7 +4,7 @@ import requests
 from datetime import datetime
 import time
 
-base_url = "http://localhost:3000"
+base_url = "https://promptlogging-samayak-ws-3000.ml.demo.truefoundry.cloud"
 
 unique_users = []
 

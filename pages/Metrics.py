@@ -7,7 +7,7 @@ import plotly.express as px
 
 st.set_page_config(page_title="Metrics", page_icon="📈")
 
-base_url = "http://localhost:3000"
+base_url = "https://promptlogging-samayak-ws-3000.ml.demo.truefoundry.cloud"
 
 
 def get_all_data():
