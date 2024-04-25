@@ -3,6 +3,7 @@ import { createClient } from '@clickhouse/client';
 import type { ClickHouseSettings } from '@clickhouse/client';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { QueryParamsDto } from './dto/QueryParams.dto';
+require('dotenv').config();
 
 // ClickHouseService class
 // This class is responsible for storing and querying data from the ClickHouse dataset
@@ -12,7 +13,8 @@ export class ClickHouseService {
     private readonly client = createClient({
         host: 'https://srys2v1np9.us-central1.gcp.clickhouse.cloud:8443',
         username: 'default',
-        password: 'Z14WmXwnna~TL',
+        password: process.env.clickhouse_password,
+        
     });
 
    //store data in dataset (POST request) 

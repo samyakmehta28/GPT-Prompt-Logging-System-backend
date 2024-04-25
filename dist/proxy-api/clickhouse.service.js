@@ -10,12 +10,13 @@ exports.ClickHouseService = void 0;
 const common_1 = require("@nestjs/common");
 const client_1 = require("@clickhouse/client");
 const common_2 = require("@nestjs/common");
+require('dotenv').config();
 let ClickHouseService = class ClickHouseService {
     constructor() {
         this.client = (0, client_1.createClient)({
             host: 'https://srys2v1np9.us-central1.gcp.clickhouse.cloud:8443',
             username: 'default',
-            password: 'Z14WmXwnna~TL',
+            password: process.env.clickhouse_password,
         });
     }
     async storeDataInDataset(responseAPI) {
