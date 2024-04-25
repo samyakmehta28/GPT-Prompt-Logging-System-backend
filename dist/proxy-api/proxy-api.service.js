@@ -22,17 +22,18 @@ let ProxyApiService = class ProxyApiService {
     ;
     async create(createProxyApiDto, queryParamsDto) {
         let responseAPI = (0, responseApiUtils_1.createResponseAPI)(createProxyApiDto);
+        let response = '';
         try {
-            const response = await this.openAIService.chatCompletion(createProxyApiDto);
+            response = await this.openAIService.chatCompletion(createProxyApiDto);
             responseAPI = (0, responseApiUtils_1.updateSuccessfulResponseAPI)(responseAPI, response);
             await this.clickHouseService.storeDataInDataset(responseAPI);
-            return this.clickHouseService.queryData(queryParamsDto);
+            return { data: response };
         }
         catch (error) {
             console.error('Error making API call:', error);
             responseAPI = (0, responseApiUtils_1.updateFailedResponseAPI)(responseAPI);
             await this.clickHouseService.storeDataInDataset(responseAPI);
-            return this.clickHouseService.queryData(queryParamsDto);
+            return { data: response };
         }
     }
     async findAll(queryParamsDto) {

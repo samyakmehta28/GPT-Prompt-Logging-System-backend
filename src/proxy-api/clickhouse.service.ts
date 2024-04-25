@@ -4,6 +4,9 @@ import type { ClickHouseSettings } from '@clickhouse/client';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { QueryParamsDto } from './dto/QueryParams.dto';
 
+// ClickHouseService class
+// This class is responsible for storing and querying data from the ClickHouse dataset
+
 @Injectable()
 export class ClickHouseService {
     private readonly client = createClient({
@@ -19,7 +22,7 @@ export class ClickHouseService {
     };
   
     try {
-      // Insert the response object into the PromptHistory table
+      // Insert the response object into the PromptDatabase table
       await this.client.insert({
         table: 'PromptDatabase',
         format: 'JSONEachRow',

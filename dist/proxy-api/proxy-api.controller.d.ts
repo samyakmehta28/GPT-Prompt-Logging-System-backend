@@ -5,7 +5,7 @@ export declare class ProxyApiController {
     private readonly proxyApiService;
     constructor(proxyApiService: ProxyApiService);
     create(createProxyApiDto: CreateProxyApiDto, queryParamsDto: QueryParamsDto): Promise<{
-        data: unknown[];
+        data: string;
     }>;
     findAll(queryParamsDto: QueryParamsDto): Promise<{
         data: unknown[];

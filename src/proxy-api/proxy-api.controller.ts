@@ -6,17 +6,19 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { HttpExceptionFilter } from '../http-exception.filter';
 import { QueryParamsDto, FiltersDto } from './dto/QueryParams.dto';
 
+//These are the API endpoints for the proxy API
+
 @Controller('proxy-api')
 export class ProxyApiController {
   constructor(private readonly proxyApiService: ProxyApiService) {}
 
   @Post()
-  create(@Body(ValidationPipe) createProxyApiDto: CreateProxyApiDto, @Query(new ValidationPipe({ transformOptions: { enableImplicitConversion: true }, transform: true  })) queryParamsDto: QueryParamsDto) {
+  create(@Body(new ValidationPipe({ transformOptions: { enableImplicitConversion: true }, transform: true  })) createProxyApiDto: CreateProxyApiDto, @Query(new ValidationPipe({ transformOptions: { enableImplicitConversion: true }, transform: true  })) queryParamsDto: QueryParamsDto) {
     return this.proxyApiService.create(createProxyApiDto, queryParamsDto);
     
   }
 
-  @Get()
+  @Get('dashboard')
   findAll( @Query(new ValidationPipe({ transformOptions: { enableImplicitConversion: true }, transform: true  })) queryParamsDto: QueryParamsDto) {
     return this.proxyApiService.findAll(queryParamsDto);
     

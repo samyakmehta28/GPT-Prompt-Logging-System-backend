@@ -38,14 +38,14 @@ let ProxyApiController = class ProxyApiController {
 exports.ProxyApiController = ProxyApiController;
 __decorate([
     (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)(common_1.ValidationPipe)),
+    __param(0, (0, common_1.Body)(new common_1.ValidationPipe({ transformOptions: { enableImplicitConversion: true }, transform: true }))),
     __param(1, (0, common_1.Query)(new common_1.ValidationPipe({ transformOptions: { enableImplicitConversion: true }, transform: true }))),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_proxy_api_dto_1.CreateProxyApiDto, QueryParams_dto_1.QueryParamsDto]),
     __metadata("design:returntype", void 0)
 ], ProxyApiController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Get)('dashboard'),
     __param(0, (0, common_1.Query)(new common_1.ValidationPipe({ transformOptions: { enableImplicitConversion: true }, transform: true }))),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [QueryParams_dto_1.QueryParamsDto]),

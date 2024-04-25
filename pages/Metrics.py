@@ -7,12 +7,12 @@ import plotly.express as px
 
 st.set_page_config(page_title="Metrics", page_icon="📈")
 
-base_url = "http://192.168.1.72:3000"
+base_url = "http://localhost:3000"
 
 
 def get_all_data():
     # API URL
-    proxy_url = base_url + "/proxy-api"
+    proxy_url = base_url + "/proxy-api/dashboard"
     # Make the GET request
     response = requests.get(proxy_url)
     # Check if the request was successful

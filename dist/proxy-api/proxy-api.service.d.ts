@@ -7,7 +7,7 @@ export declare class ProxyApiService {
     private readonly clickHouseService;
     constructor(openAIService: OpenAIService, clickHouseService: ClickHouseService);
     create(createProxyApiDto: CreateProxyApiDto, queryParamsDto: QueryParamsDto): Promise<{
-        data: unknown[];
+        data: string;
     }>;
     findAll(queryParamsDto: QueryParamsDto): Promise<{
         data: unknown[];

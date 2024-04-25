@@ -13,6 +13,7 @@ interface ResponseAPI {
     Environment: string;
   }
   
+  // Create a new ResponseAPI object and functions to update or create the object
   export function createResponseAPI(createProxyApiDto: CreateProxyApiDto): ResponseAPI {
     const createdAt = Date.now();
     console.log('createdAt:', createdAt);
@@ -30,7 +31,7 @@ interface ResponseAPI {
       Environment: createProxyApiDto.metadata.environment
     };
   }
-  
+  // updating responseAPI object with successful response
   export function updateSuccessfulResponseAPI(responseAPI: ResponseAPI, response: string): ResponseAPI {
     responseAPI.Status = 'successful';
     responseAPI.Response = response;
@@ -39,6 +40,7 @@ interface ResponseAPI {
     return responseAPI;
   }
 
+  // updating responseAPI object with failed response
   export function updateFailedResponseAPI(responseAPI: ResponseAPI): ResponseAPI {
     responseAPI.Status = 'failed';
     return responseAPI;

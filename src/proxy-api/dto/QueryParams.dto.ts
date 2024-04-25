@@ -1,5 +1,6 @@
 import { IsOptional, IsString, IsIn, ValidateNested } from 'class-validator';
 
+// Create a class-validator class called FiltersDto
 export class FiltersDto {
   @IsOptional()
   @IsString()
@@ -21,7 +22,8 @@ export class FiltersDto {
   @IsIn (['production', 'development', 'testing'])
   environment?: string;
 }
-
+// Create a class-validator class called QueryParamsDto that uses the FiltersDto class as a nested object
+// Using this to filter the data based on the query parameters
 export class QueryParamsDto {
   @IsOptional()
   @IsString()

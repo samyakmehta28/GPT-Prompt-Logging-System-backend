@@ -3,13 +3,14 @@ import { CreateProxyApiDto } from './dto/create-proxy-api.dto';
 const OpenAI = require('openai');
 require('dotenv').config();
 
+//this module is used to make a call to the openai api
+
 @Injectable()
 export class OpenAIService {
   private openai: any;
 
   constructor() {
     this.openai = new OpenAI({
-      //apiKey: process.env.OPENAI_API_KEY,
       apiKey: process.env.OPENAI_API_KEY,
       baseURL: "https://llm-gateway.truefoundry.com/api/inference/openai",
       // Set the tfy_log_request to "true" in X-TFY-METADATA header to log prompt and response for the request
@@ -18,6 +19,7 @@ export class OpenAIService {
       },
     });
   }
+  //this function is used to make a call to the openai api and return the response
 
   async chatCompletion(createProxyApiDto: CreateProxyApiDto) {
     const stream = await this.openai.chat.completions.create({
@@ -43,17 +45,6 @@ export class OpenAIService {
     }
 
     console.log('response from openai:', result)
-    
-    /*const responseAPI = {
-        "Created_At": Date.now(),
-        "Status": 'successful',
-        "Request": 'ujifacvded',
-        "Model": 'gpt-4',
-        "Total_Tokens": 481,
-        "Prompt_Tokens": 192,
-        "Completion_Time": 4,
-        "Response": 'kjzbgqasobwjuzhpxzio'
-      };*/
     return result;
   }
 }
